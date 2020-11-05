@@ -17,16 +17,13 @@ sonepurseva.config(['$stateProvider', '$locationProvider', function ($stateProvi
 
 sonepurseva.controller('seva',function($scope,$http){
     $scope.submit = function(seva){
-        var config = {
-            headers: { 'Content-Type': undefined },
-            transformResponse: angular.identity
-        };
-        var form = new FormData()
-        angular.forEach(seva, function (value, key) {
-            form.append(key, value);
-            console.log(key, value)
-        });
-        $http.post('/api/seva/create/', form, config).then(function(response){
+        var body = {
+            name:seva.name,
+            seva:seva.seva,
+            address:seva.address,
+            phonenumber:seva.phonenumber
+        }
+        $http.post('/api/seva/create/', JSON.stringify(body)).then(function(response){
             console.log(response)
             $scope.seva = ""
         })
