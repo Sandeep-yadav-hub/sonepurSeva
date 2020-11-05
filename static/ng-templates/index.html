@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/static/js/angular.js"></script>
+    <script src="/static/js/angular-ui-router@1.0.7.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <title>सोनपुर सेवा</title>
+</head>
+<body ng-app="sonepurseva">
+    <div class="text-center mt-5">
+        <h1 style="font-family: 'Ek Mukta', sans-serif;">सोनपुर ऑनलाइन सेवा में आपका स्वागत है</h1>
+        <p class="" style="display: block;font-size: 80%;color: #6c757d;">आप अपने घर के आराम से आधार और निवास प्रमाण के लिए आवेदन कर सकते हैं</p>
+    </div>
+    <div ng-controller="seva">
+        <form >
+            <div class="w-50  mt-5 mx-auto mb-5">
+                <div class="form-group" style="padding: 1rem;border: 1px solid #999;border-radius:5px">
+                    <label for="name">अपना नाम दर्ज करें</label>
+                    <input class="form-control" type="text" ng-model="seva.name" name="name" placeholder="आपका नाम"
+                        style="border-bottom: 1px dotted #999;border-left: 0;border-right: 0;border-top: 0;border-radius: 0;">
+                </div>
+                <div class="form-group" style="padding: 1rem;border: 1px solid #999;border-radius:5px">
+                    <label for="service">आपको क्या सेवा चाहिए</label><br>
+                    <input type="radio" ng-model="seva.seva" name="seva" value="आधार">
+                    <label for="seva">आधार</label><br>
+                    <input type="radio" ng-model="seva.seva" name="seva" value="आवासीय">
+                    <label for="seva">आवासीय</label>
+                </div>
+                <div class="form-group" style="padding: 1rem;border: 1px solid #999;border-radius:5px">
+                    <label for="name">पता</label>
+                    <input class="form-control" type="text" ng-model="seva.address" name="address" placeholder="आपका पता"
+                        style="border-bottom: 1px dotted #999;border-left: 0;border-right: 0;border-top: 0;border-radius: 0;">
+                </div>
+                <div class="form-group" style="padding: 1rem;border: 1px solid #999;border-radius:5px">
+                    <label for="name">फ़ोन नंबर</label>
+                    <input class="form-control" type="text" ng-model="seva.phonenumber" name="phonenumber" placeholder="आपका फ़ोन नंबर"
+                        style="border-bottom: 1px dotted #999;border-left: 0;border-right: 0;border-top: 0;border-radius: 0;">
+                </div>
+                <div style="margin: auto;width: 30%;">
+                    <button class="btn btn-outline-secondary w-100"  ng-click="submit(seva)">Submit form</button>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
