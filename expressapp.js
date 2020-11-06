@@ -57,7 +57,7 @@ const Seva = require('./routes/seva')
 
 
 //  tell app to use require route
-app.use('/*', Home)
+app.use('/home', Home)
 app.use('/api/seva', Seva)
 
 
