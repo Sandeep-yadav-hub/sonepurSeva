@@ -9,16 +9,21 @@ sonepurseva.config(['$stateProvider', '$locationProvider', function ($stateProvi
             templateUrl: '/static/ng-templates/index.html',
             controller: 'seva'
         })
-        .state('aadharseva', {
-            url: '/aadharseva',
-            templateUrl: '/static/ng-templates/aadharseva.html',
-            controller: 'aadharseva'
+        .state('form', {
+            url: '/home/form/:service',
+            templateUrl: '/static/ng-templates/form.html',
+            controller: 'form'
         })
-        .state('residentialseva', {
-            url: '/residentialseva',
-            templateUrl: '/static/ng-templates/residentialseva.html',
-            controller: 'residentialseva'
+        .state('otherService', {
+            url: '/home/otherService',
+            templateUrl: '/static/ng-templates/otherService.html'
+            
         })
+        // .state('residentialseva', {
+        //     url: '/residentialseva',
+        //     templateUrl: '/static/ng-templates/form.html',
+        //     controller: 'residentialseva'
+        // })
         .state('thankyou', {
             url: '/thankyou',
             templateUrl: '/static/ng-templates/thankyou.html',
@@ -38,14 +43,22 @@ sonepurseva.controller('header',function($scope,$state){
 })
 sonepurseva.controller('seva',function($scope,$http,$state){
     $scope.residentialseva = function(){
-        $state.go('residentialseva')
+        $state.go('form',{service:"residentialcertificateSeva"})
     }
     $scope.aadharseva = function(){
-        $state.go('aadharseva')
+        $state.go('form',{service:"aadharCardSeva"})
+    }
+    $scope.waterbillseva = function(){
+        $state.go('form',{service:"waterBillSeva"})
+    }
+    $scope.electricitybillseva = function(){
+        $state.go('form', { service:"electricityBillSeva"})
+    }
+    $scope.otherService = function(){
+        $state.go('otherService')
     }
 })
-sonepurseva.controller('aadharseva',function($scope,$http,$state){
-    $scope.fromFor = 'आधार'
+sonepurseva.controller('form',function($scope,$http,$state){
     $scope.service = function(obj){
         $scope.address = obj.target.attributes.id.value
         $scope.activeMenu = obj.target.attributes.id.value
@@ -54,29 +67,7 @@ sonepurseva.controller('aadharseva',function($scope,$http,$state){
 
         var body = {
             name: seva.name,
-            seva: $scope.fromFor,
-            address: $scope.address,
-            phonenumber: seva.phonenumber
-        }
-
-        console.log(body)
-        $http.post('/api/seva/create/', JSON.stringify(body)).then(function (response) {
-            console.log(response)
-            $state.go('thankyou')
-        })
-    }
-})
-sonepurseva.controller('residentialseva',function($scope,$http,$state){
-    $scope.fromFor = 'आवासीय'
-    $scope.service = function (obj) {
-        $scope.address = obj.target.attributes.id.value
-        $scope.activeMenu = obj.target.attributes.id.value
-    }
-    $scope.submit = function (seva) {
-
-        var body = {
-            name: seva.name,
-            seva: $scope.fromFor,
+            seva: $state.params.service,
             address: $scope.address,
             phonenumber: seva.phonenumber
         }
